@@ -23,8 +23,8 @@ from jax.config import config
 import jax.numpy as jnp
 import numpy as np
 
-from alphatensor.benchmarking import factorizations
-from alphatensor.benchmarking import utils
+from benchmarking import factorizations
+from benchmarking import utils
 
 
 class MatrixMultiplicationCorrectnessTest(unittest.TestCase):
@@ -58,6 +58,8 @@ class MatrixMultiplicationCorrectnessTest(unittest.TestCase):
     rng1, rng2 = jax.random.split(jax.random.PRNGKey(42))
     full_a = jax.random.uniform(rng1, (1024, 1024), dtype=jnp.float64)
     full_b = jax.random.uniform(rng2, (1024, 1024), dtype=jnp.float64)
+
+    print(type(full_a))
 
     a = utils.block_split(full_a, 4, 4)
     b = utils.block_split(full_b, 4, 4)

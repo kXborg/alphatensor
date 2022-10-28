@@ -33,6 +33,12 @@ def block_split(matrix: jnp.ndarray, n_rows: int, n_cols: int) -> BlockMatrix:
   return [jnp.split(row, n_cols, axis=1) for row in rows]
 
 
+def np_block_split(matrix: np.ndarray, n_rows: int, n_cols: int) -> BlockMatrix:
+  """Splits `matrix` into a `n_rows x n_cols` block matrix."""
+  rows = np.split(matrix, n_rows, axis=0)
+  return [np.split(row, n_cols, axis=1) for row in rows]
+
+
 def get_matrix_multiplication_tensor(n: int) -> np.ndarray:
   """Returns the matrix multiplication tensor T_n.
 
